@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Abhishek Jha – Java Backend Developer</title>
     <meta name="description"
-        content="Portfolio of Abhishek Jha, Programmer Analyst at Cognizant building Java and Spring Boot REST APIs.">
+        content="Portfolio of Abhishek Jha: Java and Spring Boot developer at Cognizant, 748 LeetCode problems solved.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -14,19 +14,26 @@
         rel="stylesheet">
     <style>
         :root {
-            --bg: #F2F5FA;
-            --panel: #FFFFFF;
-            --ink: #12203D;
-            --muted: #55627D;
-            --line: #D6DDEA;
-            --accent: #2F45D8;
-            --accent-ink: #FFFFFF;
+            --bg: #F3F5FB;
+            --panel: #fff;
+            --panel2: #EEF1FA;
+            --ink: #101B38;
+            --muted: #57647F;
+            --line: #DAE0EE;
+            --accent: #3049E0;
+            --accent2: #7C5CFF;
+            --accent-ink: #fff;
             --hi: #F5A300;
-            --code-bg: #12203D;
+            --easy: #0FA37F;
+            --med: #E89A00;
+            --hard: #E5484D;
+            --code-bg: #101B38;
             --code-ink: #DCE4FA;
-            --code-key: #8FA2FF;
-            --code-str: #FFC857;
-            --code-ok: #6EE7A8;
+            --k: #8FA2FF;
+            --s: #FFC857;
+            --n: #6EE7A8;
+            --shadow: 0 1px 2px #10204010, 0 12px 32px -12px #10204030;
+            --dot: #10204014;
             --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
             --body: "Figtree", "Segoe UI", system-ui, sans-serif;
             --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -34,26 +41,34 @@
 
         @media (prefers-color-scheme:dark) {
             :root:not([data-theme="light"]) {
-                --bg: #0D1324;
-                --panel: #141C33;
-                --ink: #E7ECF8;
-                --muted: #9AA6C3;
-                --line: #26314F;
+                --bg: #0A0F1F;
+                --panel: #121A32;
+                --panel2: #182241;
+                --ink: #E9EEFB;
+                --muted: #9BA8C8;
+                --line: #25304F;
                 --accent: #8FA2FF;
-                --accent-ink: #0D1324;
-                --code-bg: #080C18;
+                --accent2: #B39DFF;
+                --accent-ink: #0A0F1F;
+                --code-bg: #070B16;
+                --shadow: 0 1px 2px #0006, 0 16px 40px -14px #000a;
+                --dot: #ffffff12;
             }
         }
 
         :root[data-theme="dark"] {
-            --bg: #0D1324;
-            --panel: #141C33;
-            --ink: #E7ECF8;
-            --muted: #9AA6C3;
-            --line: #26314F;
+            --bg: #0A0F1F;
+            --panel: #121A32;
+            --panel2: #182241;
+            --ink: #E9EEFB;
+            --muted: #9BA8C8;
+            --line: #25304F;
             --accent: #8FA2FF;
-            --accent-ink: #0D1324;
-            --code-bg: #080C18;
+            --accent2: #B39DFF;
+            --accent-ink: #0A0F1F;
+            --code-bg: #070B16;
+            --shadow: 0 1px 2px #0006, 0 16px 40px -14px #000a;
+            --dot: #ffffff12;
         }
 
         * {
@@ -68,14 +83,16 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px
+            scroll-padding-top: 84px
         }
 
         body {
             background: var(--bg);
             color: var(--ink);
-            font: 400 1.05rem/1.65 var(--body);
-            -webkit-font-smoothing: antialiased
+            font: 400 1.04rem/1.65 var(--body);
+            -webkit-font-smoothing: antialiased;
+            background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+            background-size: 22px 22px
         }
 
         a {
@@ -85,11 +102,11 @@
         :focus-visible {
             outline: 3px solid var(--hi);
             outline-offset: 3px;
-            border-radius: 4px
+            border-radius: 6px
         }
 
         .wrap {
-            max-width: 1040px;
+            max-width: 1080px;
             margin: 0 auto;
             padding: 0 24px
         }
@@ -98,9 +115,9 @@
         header.nav {
             position: sticky;
             top: env(safe-area-inset-top, 0px);
-            z-index: 10;
-            background: color-mix(in srgb, var(--bg) 88%, transparent);
-            backdrop-filter: blur(10px);
+            z-index: 20;
+            background: color-mix(in srgb, var(--bg) 82%, transparent);
+            backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--line)
         }
 
@@ -108,32 +125,52 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 62px;
+            height: 64px;
             gap: 16px
         }
 
         .logo {
-            font: 800 1.15rem var(--display);
+            font: 800 1.2rem var(--display);
             text-decoration: none;
-            letter-spacing: -.02em
+            letter-spacing: -.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .logo i {
+            display: grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            font: 800 .85rem var(--display);
+            font-style: normal
         }
 
         .nav ul {
             display: flex;
-            gap: 22px;
+            gap: 4px;
             list-style: none;
             padding: 0;
-            font-size: .95rem;
+            font-size: .93rem;
             font-weight: 500
         }
 
         .nav ul a {
             text-decoration: none;
-            color: var(--muted)
+            color: var(--muted);
+            padding: 7px 12px;
+            border-radius: 8px;
+            transition: background .15s, color .15s
         }
 
-        .nav ul a:hover {
-            color: var(--ink)
+        .nav ul a:hover,
+        .nav ul a.act {
+            color: var(--ink);
+            background: var(--panel2)
         }
 
         .toggle {
@@ -141,7 +178,7 @@
             background: var(--panel);
             color: var(--ink);
             border-radius: 999px;
-            padding: 6px 14px;
+            padding: 7px 15px;
             font: 500 .85rem var(--body);
             cursor: pointer
         }
@@ -150,7 +187,7 @@
             border-color: var(--accent)
         }
 
-        @media(max-width:720px) {
+        @media(max-width:860px) {
             .nav ul {
                 display: none
             }
@@ -158,30 +195,72 @@
 
         /* hero */
         .hero {
-            padding: 72px 0 56px
+            padding: 84px 0 72px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            right: -140px;
+            top: -160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, color-mix(in srgb, var(--accent2) 34%, transparent), transparent 68%);
+            pointer-events: none
         }
 
         .hero .wrap {
             display: grid;
             grid-template-columns: 1.05fr 1fr;
-            gap: 48px;
-            align-items: center
+            gap: 56px;
+            align-items: center;
+            position: relative
         }
 
-        h1 {
-            font: 800 clamp(2.6rem, 6vw, 4.4rem)/1 var(--display);
-            letter-spacing: -.035em
-        }
-
-        .role {
-            margin-top: 18px;
-            font: 500 1.25rem/1.4 var(--display);
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            border-radius: 999px;
+            font-size: .86rem;
+            font-weight: 500;
             color: var(--muted)
         }
 
+        .status b {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--easy);
+            box-shadow: 0 0 0 4px #0FA37F33
+        }
+
+        h1 {
+            font: 800 clamp(2.8rem, 6.4vw, 4.8rem)/.98 var(--display);
+            letter-spacing: -.04em;
+            margin-top: 20px;
+            background: linear-gradient(120deg, var(--ink) 40%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .role {
+            margin-top: 20px;
+            font: 500 1.3rem/1.4 var(--display);
+            color: var(--muted);
+            max-width: 30ch
+        }
+
         .lede {
-            margin-top: 18px;
-            max-width: 46ch;
+            margin-top: 16px;
+            max-width: 48ch;
             color: var(--muted)
         }
 
@@ -189,49 +268,63 @@
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 28px
+            margin-top: 30px
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 12px 22px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 600;
             text-decoration: none;
-            border: 1.5px solid var(--ink);
-            transition: transform .15s
-        }
-
-        .btn.primary {
-            background: var(--accent);
-            color: var(--accent-ink);
-            border-color: var(--accent)
+            border: 1.5px solid var(--line);
+            background: var(--panel);
+            transition: transform .15s, border-color .15s, box-shadow .15s
         }
 
         .btn:hover {
-            transform: translateY(-2px)
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow)
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border-color: transparent
         }
 
         .term {
             background: var(--code-bg);
             color: var(--code-ink);
-            border-radius: 14px;
-            font: 400 .86rem/1.7 var(--mono);
+            border-radius: 16px;
+            font: 400 .85rem/1.7 var(--mono);
             overflow: hidden;
-            box-shadow: 8px 8px 0 var(--accent)
+            box-shadow: var(--shadow), 10px 10px 0 -2px color-mix(in srgb, var(--accent) 70%, transparent)
         }
 
         .term-bar {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 12px 18px;
-            border-bottom: 1px solid #ffffff1f;
-            color: #9fb0dd
+            border-bottom: 1px solid #ffffff1a;
+            color: #9fb0dd;
+            gap: 12px
+        }
+
+        .term-bar span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
         }
 
         .term-bar b {
-            color: var(--code-ok);
-            font-weight: 500
+            color: var(--n);
+            font-weight: 500;
+            flex: none
         }
 
         .term pre {
@@ -256,44 +349,80 @@
         }
 
         .k {
-            color: var(--code-key)
+            color: var(--k)
         }
 
         .s {
-            color: var(--code-str)
+            color: var(--s)
         }
 
         .n {
-            color: var(--code-ok)
+            color: var(--n)
         }
 
-        @media(max-width:820px) {
+        @media(max-width:860px) {
             .hero .wrap {
                 grid-template-columns: 1fr
             }
 
             .hero {
-                padding-top: 44px
+                padding-top: 48px
             }
         }
 
         /* sections */
         section {
-            padding: 64px 0;
+            padding: 76px 0;
             border-top: 1px solid var(--line)
         }
 
+        .sec-head {
+            margin-bottom: 34px;
+            max-width: 60ch
+        }
+
         h2 {
-            font: 700 clamp(1.7rem, 3.5vw, 2.3rem)/1.1 var(--display);
-            letter-spacing: -.025em;
-            margin-bottom: 28px
+            font: 800 clamp(1.9rem, 4vw, 2.7rem)/1.08 var(--display);
+            letter-spacing: -.03em
+        }
+
+        .sub {
+            margin-top: 8px;
+            color: var(--muted)
         }
 
         .card {
             background: var(--panel);
             border: 1px solid var(--line);
-            border-radius: 14px;
-            padding: 26px
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: var(--shadow);
+            transition: border-color .2s, transform .2s
+        }
+
+        .card:hover {
+            border-color: color-mix(in srgb, var(--accent) 55%, var(--line))
+        }
+
+        h3 {
+            font: 700 1.25rem var(--display);
+            letter-spacing: -.01em
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: .93rem
+        }
+
+        .card ul {
+            padding-left: 20px;
+            display: grid;
+            gap: 10px;
+            max-width: 80ch
+        }
+
+        .card li::marker {
+            color: var(--accent)
         }
 
         .job-head {
@@ -301,26 +430,15 @@
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 6px 20px;
-            margin-bottom: 14px
+            margin-bottom: 16px
         }
 
-        .job-head h3 {
-            font: 700 1.35rem var(--display)
-        }
-
-        .meta {
-            color: var(--muted);
-            font-size: .95rem
-        }
-
-        .card ul {
-            padding-left: 20px;
-            display: grid;
-            gap: 10px;
-            max-width: 78ch
-        }
-
-        .card li::marker {
+        .pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: var(--panel2);
+            font: 500 .8rem var(--mono);
             color: var(--accent)
         }
 
@@ -329,23 +447,28 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 18px
+            margin-bottom: 20px
         }
 
         .tab {
             border: 1px solid var(--line);
-            background: transparent;
+            background: var(--panel);
             color: var(--ink);
-            padding: 8px 16px;
+            padding: 9px 18px;
             border-radius: 999px;
             font: 500 .92rem var(--body);
-            cursor: pointer
+            cursor: pointer;
+            transition: all .15s
+        }
+
+        .tab:hover {
+            border-color: var(--accent)
         }
 
         .tab[aria-selected="true"] {
-            background: var(--ink);
-            color: var(--bg);
-            border-color: var(--ink)
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border-color: transparent
         }
 
         .chips {
@@ -359,26 +482,29 @@
         .chip {
             background: var(--panel);
             border: 1px solid var(--line);
-            padding: 7px 14px;
-            border-radius: 8px;
-            font: 500 .92rem var(--mono)
+            padding: 8px 15px;
+            border-radius: 10px;
+            font: 500 .9rem var(--mono);
+            box-shadow: var(--shadow)
         }
 
-        /* projects */
+        /* projects & generic grids */
         .grid2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px
+            gap: 22px
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px
         }
 
         .proj {
             display: flex;
             flex-direction: column;
-            gap: 12px
-        }
-
-        .proj h3 {
-            font: 700 1.3rem var(--display)
+            gap: 14px
         }
 
         .proj ul {
@@ -394,9 +520,9 @@
         .tags span {
             font: 500 .78rem var(--mono);
             color: var(--accent);
-            border: 1px solid var(--line);
+            background: var(--panel2);
             border-radius: 6px;
-            padding: 2px 8px
+            padding: 3px 9px
         }
 
         .proj .btn {
@@ -405,29 +531,335 @@
             font-size: .92rem
         }
 
+        @media(max-width:860px) {
+            .grid3 {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
         @media(max-width:760px) {
-            .grid2 {
+
+            .grid2,
+            .grid3 {
                 grid-template-columns: 1fr
             }
         }
 
-        /* stats */
-        .stat {
-            font: 800 3rem/1 var(--display);
-            color: var(--accent);
+        /* leetcode */
+        .lc-top {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 22px;
+            margin-bottom: 22px
+        }
+
+        .lc-solved {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 28px;
+            align-items: center
+        }
+
+        .ring {
+            position: relative;
+            width: 170px;
+            height: 170px
+        }
+
+        .ring svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg)
+        }
+
+        .ring circle {
+            fill: none;
+            stroke-width: 9;
+            stroke-linecap: round
+        }
+
+        .ring .bg {
+            stroke: var(--panel2)
+        }
+
+        .ring .fg {
+            stroke: var(--accent);
+            stroke-dasharray: 0 999;
+            transition: stroke-dasharray 1.4s cubic-bezier(.2, .8, .2, 1)
+        }
+
+        .ring .mid {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-content: center;
+            text-align: center
+        }
+
+        .ring .mid b {
+            font: 800 2.5rem/1 var(--display);
             letter-spacing: -.03em
         }
 
-        .stat-card p {
-            margin-top: 8px;
+        .ring .mid span {
+            font-size: .8rem;
             color: var(--muted)
         }
 
-        .links {
+        .diff {
+            display: grid;
+            gap: 14px
+        }
+
+        .diff-row .top {
             display: flex;
+            justify-content: space-between;
+            font-size: .9rem;
+            font-weight: 600;
+            margin-bottom: 5px
+        }
+
+        .diff-row .top span:last-child {
+            font-family: var(--mono);
+            color: var(--muted);
+            font-weight: 500;
+            font-size: .82rem
+        }
+
+        .bar {
+            height: 8px;
+            border-radius: 99px;
+            background: var(--panel2);
+            overflow: hidden
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            width: 0;
+            border-radius: 99px;
+            transition: width 1.2s cubic-bezier(.2, .8, .2, 1)
+        }
+
+        .rate {
+            font: 800 2.6rem/1 var(--display);
+            letter-spacing: -.03em;
+            color: var(--accent)
+        }
+
+        .kv {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px 14px;
+            margin-top: 18px
+        }
+
+        .kv div b {
+            display: block;
+            font: 700 1.35rem/1.2 var(--display)
+        }
+
+        .kv div span {
+            font-size: .85rem;
+            color: var(--muted)
+        }
+
+        .mini {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 14px
+        }
+
+        .lc-mid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 22px
+        }
+
+        .lvl {
+            font: 600 .78rem var(--mono);
+            margin-bottom: 12px;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 99px;
+            color: #fff
+        }
+
+        .tag-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-top: 1px solid var(--line);
+            font-size: .95rem
+        }
+
+        .tag-row:first-of-type {
+            border-top: 0
+        }
+
+        .tag-row b {
+            font: 500 .9rem var(--mono);
+            color: var(--muted)
+        }
+
+        .lang {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
             gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: .92rem
+        }
+
+        .lang span:last-child {
+            font: 500 .8rem var(--mono);
+            color: var(--muted)
+        }
+
+        .badges {
+            display: flex;
+            gap: 16px;
+            align-items: center
+        }
+
+        .badge-ico {
+            flex: none;
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--hi), #FF7A45);
+            color: #fff;
+            font: 800 1.5rem var(--display);
+            box-shadow: 0 8px 20px -6px #F5A30088
+        }
+
+        @media(max-width:900px) {
+
+            .lc-top,
+            .lc-mid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:480px) {
+            .lc-solved {
+                grid-template-columns: 1fr;
+                justify-items: center
+            }
+
+            .diff {
+                width: 100%
+            }
+        }
+
+        /* github */
+        .gh-user {
+            display: flex;
+            align-items: center;
+            gap: 18px;
             flex-wrap: wrap;
-            margin-top: 20px
+            margin-bottom: 22px
+        }
+
+        .gh-user img {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 3px solid var(--panel2)
+        }
+
+        .gh-stats {
+            display: flex;
+            gap: 26px;
+            margin-left: auto;
+            flex-wrap: wrap
+        }
+
+        .gh-stats div b {
+            display: block;
+            font: 800 1.7rem/1.1 var(--display)
+        }
+
+        .gh-stats div span {
+            font-size: .82rem;
+            color: var(--muted)
+        }
+
+        .repo {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-decoration: none
+        }
+
+        .repo:hover {
+            transform: translateY(-3px)
+        }
+
+        .repo h3 {
+            font-size: 1.05rem;
+            word-break: break-word
+        }
+
+        .repo p {
+            color: var(--muted);
+            font-size: .92rem;
+            flex: 1
+        }
+
+        .repo .foot {
+            display: flex;
+            gap: 16px;
+            font: 500 .8rem var(--mono);
+            color: var(--muted)
+        }
+
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-right: 6px
+        }
+
+        .chart {
+            margin-top: 22px;
+            text-align: center
+        }
+
+        .chart img {
+            max-width: 100%;
+            border-radius: 8px
+        }
+
+        .dark-chart {
+            filter: invert(.9) hue-rotate(180deg)
+        }
+
+        .note {
+            color: var(--muted);
+            text-align: center;
+            padding: 28px
+        }
+
+        /* achievements */
+        .stat {
+            font: 800 3.2rem/1 var(--display);
+            letter-spacing: -.035em;
+            background: linear-gradient(120deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .stat-card p {
+            margin-top: 10px;
+            color: var(--muted)
         }
 
         /* education */
@@ -436,45 +868,50 @@
             padding: 0;
             border-left: 2px solid var(--line);
             display: grid;
-            gap: 26px;
-            margin-left: 6px
+            gap: 28px;
+            margin-left: 8px
         }
 
         .edu li {
-            padding-left: 24px;
+            padding-left: 28px;
             position: relative
         }
 
         .edu li::before {
             content: "";
             position: absolute;
-            left: -7px;
-            top: 9px;
-            width: 12px;
-            height: 12px;
+            left: -8px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: var(--accent);
-            border: 2px solid var(--bg)
-        }
-
-        .edu h3 {
-            font: 700 1.15rem var(--display)
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border: 3px solid var(--bg)
         }
 
         .edu .meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px 16px
+            gap: 2px 18px
         }
 
         /* contact */
-        .contact {
-            text-align: left
+        .contact .box {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border-radius: 26px;
+            padding: clamp(28px, 6vw, 56px);
+            box-shadow: var(--shadow)
+        }
+
+        .contact h2 {
+            color: #fff
         }
 
         .contact .big {
-            font: 800 clamp(1.6rem, 4.5vw, 3rem)/1.15 var(--display);
+            font: 800 clamp(1.5rem, 4.5vw, 2.8rem)/1.15 var(--display);
             letter-spacing: -.03em;
+            margin: 14px 0 26px;
             word-break: break-word
         }
 
@@ -484,8 +921,26 @@
             text-underline-offset: 6px
         }
 
+        .contact .btn {
+            background: #ffffff1f;
+            color: #fff;
+            border-color: #ffffff40
+        }
+
+        .contact .btn:hover {
+            background: #ffffff33;
+            border-color: #fff
+        }
+
+        .links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px
+        }
+
         footer {
-            padding: 28px 0 40px;
+            padding: 30px 0 44px;
             color: var(--muted);
             font-size: .9rem;
             border-top: 1px solid var(--line)
@@ -496,7 +951,10 @@
                 scroll-behavior: auto
             }
 
-            .btn {
+            .btn,
+            .card,
+            .ring .fg,
+            .bar i {
                 transition: none
             }
         }
@@ -506,12 +964,13 @@
 <body>
     <header class="nav">
         <div class="wrap">
-            <a class="logo" href="#top">Abhishek Jha</a>
-            <ul>
+            <a class="logo" href="#top"><i>AJ</i>Abhishek Jha</a>
+            <ul id="menu">
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#leetcode">LeetCode</a></li>
+                <li><a href="#github">GitHub</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -523,10 +982,11 @@
         <div class="hero">
             <div class="wrap">
                 <div>
+                    <span class="status"><b></b>Programmer Analyst at Cognizant</span>
                     <h1>Abhishek Jha</h1>
                     <p class="role">Java backend developer who builds secure, tested REST APIs.</p>
-                    <p class="lede">I work at Cognizant in Bengaluru with Spring Boot, JPA and MySQL, and I build
-                        AI-powered web apps with React on the side.</p>
+                    <p class="lede">I work with Spring Boot, JPA and MySQL in Bengaluru, and I build AI-powered web apps
+                        with React on the side.</p>
                     <div class="cta">
                         <a class="btn primary" href="#projects">See my projects</a>
                         <a class="btn" href="mailto:jhaa213152@gmail.com">Email me</a>
@@ -541,14 +1001,16 @@
 
         <section id="experience">
             <div class="wrap">
-                <h2>Experience</h2>
+                <div class="sec-head">
+                    <h2>Experience</h2>
+                </div>
                 <article class="card">
                     <div class="job-head">
                         <div>
                             <h3>Programmer Analyst</h3>
                             <div class="meta">Cognizant, Bengaluru, India</div>
                         </div>
-                        <div class="meta">Nov 2025 – Present</div>
+                        <div><span class="pill">Nov 2025 – Present</span></div>
                     </div>
                     <ul>
                         <li>Develop and maintain enterprise REST APIs with Java, Spring Boot and Spring MVC, covering
@@ -569,7 +1031,10 @@
 
         <section id="skills">
             <div class="wrap">
-                <h2>Skills</h2>
+                <div class="sec-head">
+                    <h2>Skills</h2>
+                    <p class="sub">Pick a group to see what I use.</p>
+                </div>
                 <div class="tabs" role="tablist" id="tabs" aria-label="Skill groups"></div>
                 <div class="chips" id="chips" role="tabpanel" aria-live="polite"></div>
             </div>
@@ -577,7 +1042,9 @@
 
         <section id="projects">
             <div class="wrap">
-                <h2>Projects</h2>
+                <div class="sec-head">
+                    <h2>Projects</h2>
+                </div>
                 <div class="grid2">
                     <article class="card proj">
                         <h3>AI Placement Practice Platform</h3>
@@ -610,22 +1077,113 @@
             </div>
         </section>
 
-        <section id="achievements">
+        <section id="leetcode">
             <div class="wrap">
-                <h2>Achievements and coding profiles</h2>
-                <div class="grid2">
-                    <div class="card stat-card">
-                        <div class="stat"><span id="count">800</span>+</div>
-                        <p>algorithmic problems solved on competitive programming platforms.</p>
-                        <div class="links">
-                            <a class="btn" href="https://leetcode.com/u/jhaa213152/" target="_blank"
-                                rel="noopener">LeetCode</a>
-                            <a class="btn" href="https://www.geeksforgeeks.org/profile/jhaa213152?tab=activity"
-                                target="_blank" rel="noopener">GeeksforGeeks</a>
+                <div class="sec-head">
+                    <h2>LeetCode</h2>
+                    <p class="sub">Profile <b>jhaa213152</b> · global rank 82,252 · 15 badges, latest is the 500 Days
+                        Badge.</p>
+                </div>
+
+                <div class="lc-top">
+                    <div class="card lc-solved">
+                        <div class="ring" id="ring" data-pct="18.4">
+                            <svg viewBox="0 0 120 120">
+                                <circle class="bg" cx="60" cy="60" r="52" />
+                                <circle class="fg" cx="60" cy="60" r="52" />
+                            </svg>
+                            <div class="mid"><b>748</b><span>of 4069 solved</span></div>
+                        </div>
+                        <div class="diff" id="diff"></div>
+                    </div>
+                    <div class="card">
+                        <div class="mini">Contest rating</div>
+                        <div class="rate">1,507</div>
+                        <div class="kv">
+                            <div><b>12</b><span>contests attended</span></div>
+                            <div><b>Top 42.62%</b><span>373,136 / 884,439 globally</span></div>
+                            <div><b>63.14%</b><span>acceptance rate</span></div>
+                            <div><b>3K</b><span>submissions</span></div>
                         </div>
                     </div>
+                </div>
+
+                <div class="lc-mid">
+                    <div class="card">
+                        <div class="mini">Languages</div>
+                        <div id="langs"></div>
+                    </div>
+                    <div class="card" id="topics"></div>
+                    <div class="card">
+                        <div class="mini">Consistency</div>
+                        <div class="kv" style="margin-top:0">
+                            <div><b>191</b><span>submissions in the past year</span></div>
+                            <div><b>124</b><span>total active days</span></div>
+                            <div><b>10</b><span>max streak (days)</span></div>
+                            <div><b>8 / 3</b><span>views / solutions posted</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card badges">
+                    <div class="badge-ico" aria-hidden="true">500</div>
+                    <div>
+                        <h3>500 Days Badge</h3>
+                        <p class="meta">My most recent of 15 LeetCode badges.</p>
+                    </div>
+                    <a class="btn" style="margin-left:auto" href="https://leetcode.com/u/jhaa213152/" target="_blank"
+                        rel="noopener">View profile</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="github">
+            <div class="wrap">
+                <div class="sec-head">
+                    <h2>GitHub</h2>
+                    <p class="sub">My pinned repositories and recent activity on GitHub.</p>
+                </div>
+                <div class="gh-user">
+                    <img id="ghAvatar" alt="GitHub avatar" width="72" height="72"
+                        src="https://github.com/Abhishek213152.png?size=144">
+                    <div>
+                        <h3>Abhishek Jha</h3>
+                        <p class="meta">React.js / React Native / Next.js developer · Kolkata</p><a class="meta"
+                            href="https://github.com/Abhishek213152" target="_blank"
+                            rel="noopener">github.com/Abhishek213152</a>
+                    </div>
+                    <div class="gh-stats">
+                        <div><b>53</b><span>public repos</span></div>
+                        <div><b>13</b><span>contributions in the last year</span></div>
+                        <div><b>YOLO</b><span>GitHub achievement</span></div>
+                    </div>
+                </div>
+                <div class="mini" style="margin-bottom:14px">Pinned repositories</div>
+                <div class="grid3" id="repos"></div>
+                <div class="card" style="margin-top:22px">
+                    <div class="mini">Active this month</div>
+                    <div class="tags" id="recent"></div>
+                </div>
+                <div class="card chart">
+                    <img id="ghChart" class="" alt="GitHub contribution graph for Abhishek213152"
+                        src="https://ghchart.rshah.org/3049E0/Abhishek213152" loading="lazy"
+                        onerror="this.parentNode.style.display='none'">
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <div class="wrap">
+                <div class="sec-head">
+                    <h2>Achievements</h2>
+                </div>
+                <div class="grid2">
                     <div class="card stat-card">
-                        <div class="stat">Live</div>
+                        <div class="stat">800+</div>
+                        <p>algorithmic problems solved across competitive programming platforms.</p>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat">Production</div>
                         <p>Developed and deployed a production-grade business app using Cursor AI and Claude Opus.</p>
                     </div>
                 </div>
@@ -634,7 +1192,9 @@
 
         <section id="education">
             <div class="wrap">
-                <h2>Education</h2>
+                <div class="sec-head">
+                    <h2>Education</h2>
+                </div>
                 <ul class="edu">
                     <li>
                         <h3>Future Institute of Engineering and Management</h3>
@@ -655,18 +1215,22 @@
 
         <section id="contact" class="contact">
             <div class="wrap">
-                <h2>Get in touch</h2>
-                <p class="big"><a href="mailto:jhaa213152@gmail.com">jhaa213152@gmail.com</a></p>
-                <div class="links">
-                    <a class="btn" href="tel:+916289716964">+91 62897 16964</a>
-                    <a class="btn" href="https://www.linkedin.com/in/abhishek-jha-0839a621b/" target="_blank"
-                        rel="noopener">LinkedIn</a>
-                    <a class="btn" href="https://github.com/Abhishek213152" target="_blank" rel="noopener">GitHub</a>
+                <div class="box">
+                    <h2>Let's build something</h2>
+                    <p class="big"><a href="mailto:jhaa213152@gmail.com">jhaa213152@gmail.com</a></p>
+                    <div class="links" style="margin-top:0">
+                        <a class="btn" href="tel:+916289716964">+91 62897 16964</a>
+                        <a class="btn" href="https://www.linkedin.com/in/abhishek-jha-0839a621b/" target="_blank"
+                            rel="noopener">LinkedIn</a>
+                        <a class="btn" href="https://github.com/Abhishek213152" target="_blank"
+                            rel="noopener">GitHub</a>
+                        <a class="btn" href="https://leetcode.com/u/jhaa213152/" target="_blank"
+                            rel="noopener">LeetCode</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
     <footer>
         <div class="wrap">© <span id="year"></span> Abhishek Jha</div>
     </footer>
@@ -675,44 +1239,36 @@
         (function () {
             var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
             if (reduce) document.documentElement.classList.add("reduce");
+            var $ = function (id) { return document.getElementById(id); };
+            var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
 
-            /* Theme toggle */
-            var root = document.documentElement, btn = document.getElementById("theme");
+            /* Theme */
+            var root = document.documentElement, btn = $("theme");
             function isDark() { return root.dataset.theme === "dark"; }
             if (window.matchMedia("(prefers-color-scheme: dark)").matches) root.dataset.theme = "dark";
             try { var saved = localStorage.getItem("theme"); if (saved) root.dataset.theme = saved; } catch (e) { }
-            function label() { btn.textContent = isDark() ? "Light mode" : "Dark mode"; }
-            label();
+            function sync() { btn.textContent = isDark() ? "Light mode" : "Dark mode"; $("ghChart").src = "https://ghchart.rshah.org/" + (isDark() ? "8FA2FF" : "3049E0") + "/Abhishek213152"; }
+            sync();
             btn.addEventListener("click", function () {
                 root.dataset.theme = isDark() ? "light" : "dark";
                 try { localStorage.setItem("theme", root.dataset.theme); } catch (e) { }
-                label();
+                sync();
             });
 
-            /* Hero: API-style summary revealed line by line */
+            /* Hero JSON reveal */
+            var K = function (t) { return '<span class="k">"' + t + '"</span>'; }, S = function (t) { return '<span class="s">"' + t + '"</span>'; }, N = function (t) { return '<span class="n">' + t + '</span>'; };
             var lines = [
-                '{',
-                '  <span class="k">"name"</span>: <span class="s">"Abhishek Jha"</span>,',
-                '  <span class="k">"role"</span>: <span class="s">"Programmer Analyst"</span>,',
-                '  <span class="k">"company"</span>: <span class="s">"Cognizant"</span>,',
-                '  <span class="k">"location"</span>: <span class="s">"Bengaluru, India"</span>,',
-                '  <span class="k">"stack"</span>: [<span class="s">"Java"</span>, <span class="s">"Spring Boot"</span>,',
-                '            <span class="s">"JPA"</span>, <span class="s">"MySQL"</span>, <span class="s">"React"</span>],',
-                '  <span class="k">"security"</span>: <span class="s">"JWT + RBAC"</span>,',
-                '  <span class="k">"testing"</span>: [<span class="s">"JUnit"</span>, <span class="s">"Mockito"</span>],',
-                '  <span class="k">"problemsSolved"</span>: <span class="n">800</span>,',
-                '  <span class="k">"openToWork"</span>: <span class="n">true</span>',
-                '}'
+                '{', '  ' + K("name") + ': ' + S("Abhishek Jha") + ',', '  ' + K("role") + ': ' + S("Programmer Analyst") + ',',
+                '  ' + K("company") + ': ' + S("Cognizant") + ',', '  ' + K("location") + ': ' + S("Bengaluru, India") + ',',
+                '  ' + K("stack") + ': [' + S("Java") + ', ' + S("Spring Boot") + ',', '            ' + S("JPA") + ', ' + S("MySQL") + ', ' + S("React") + '],',
+                '  ' + K("security") + ': ' + S("JWT + RBAC") + ',', '  ' + K("leetcodeSolved") + ': ' + N("748") + ',',
+                '  ' + K("contestRating") + ': ' + N("1507") + ',', '  ' + K("openToWork") + ': ' + N("true"), '}'
             ];
-            var pre = document.getElementById("json");
+            var pre = $("json");
             pre.innerHTML = lines.map(function (l) { return '<span class="l">' + l + '</span>'; }).join("");
-            var els = pre.querySelectorAll(".l");
-            els.forEach(function (el, i) {
-                if (reduce) return;
-                setTimeout(function () { el.classList.add("on"); }, 350 + i * 130);
-            });
+            pre.querySelectorAll(".l").forEach(function (el, i) { if (!reduce) setTimeout(function () { el.classList.add("on"); }, 350 + i * 120); });
 
-            /* Skills tabs */
+            /* Skills */
             var skills = {
                 "Languages": ["Java", "JavaScript (ES6+)", "Python", "SQL"],
                 "Backend": ["Spring Boot", "Spring MVC", "REST APIs", "Microservices", "Domain-Driven Design", "Hibernate"],
@@ -722,7 +1278,7 @@
                 "Testing and tools": ["Jest", "Mocha", "Jasmine", "JUnit", "Mockito", "Git", "Postman", "Maven", "JIRA", "Agile/Scrum", "Cursor AI"],
                 "Computer science": ["Data Structures and Algorithms", "OOP Design Patterns", "DBMS", "Operating Systems", "HLD", "LLD"]
             };
-            var tabs = document.getElementById("tabs"), chips = document.getElementById("chips");
+            var tabs = $("tabs"), chips = $("chips");
             function show(name) {
                 Array.prototype.forEach.call(tabs.children, function (t) { t.setAttribute("aria-selected", String(t.textContent === name)); });
                 chips.innerHTML = skills[name].map(function (s) { return '<span class="chip">' + s + '</span>'; }).join("");
@@ -731,27 +1287,66 @@
                 var b = document.createElement("button");
                 b.type = "button"; b.className = "tab"; b.setAttribute("role", "tab"); b.textContent = name;
                 b.addEventListener("click", function () { show(name); });
-                tabs.appendChild(b);
-                if (i === 0) show(name);
+                tabs.appendChild(b); if (i === 0) show(name);
             });
 
-            /* Count-up for problems solved */
-            var counter = document.getElementById("count");
-            if (!reduce && "IntersectionObserver" in window) {
-                var done = false;
-                new IntersectionObserver(function (entries, obs) {
-                    if (done || !entries[0].isIntersecting) return;
-                    done = true; obs.disconnect();
-                    var start = performance.now();
-                    (function tick(now) {
-                        var p = Math.min((now - start) / 1200, 1);
-                        counter.textContent = Math.round(800 * (1 - Math.pow(1 - p, 3)));
-                        if (p < 1) requestAnimationFrame(tick);
-                    })(start);
-                }).observe(counter);
-            }
+            /* LeetCode data (from profile) */
+            var diff = [["Easy", 234, 968, "var(--easy)"], ["Medium", 411, 2122, "var(--med)"], ["Hard", 103, 979, "var(--hard)"]];
+            $("diff").innerHTML = diff.map(function (d) {
+                return '<div class="diff-row"><div class="top"><span style="color:' + d[3] + '">' + d[0] + '</span><span>' + d[1] + ' / ' + d[2] + '</span></div><div class="bar"><i data-w="' + (d[1] / d[2] * 100).toFixed(1) + '" style="background:' + d[3] + '"></i></div></div>';
+            }).join("");
+            var langs = [["Java", 720], ["C++", 23], ["MySQL", 17]];
+            $("langs").innerHTML = langs.map(function (l) {
+                return '<div class="lang"><span>' + l[0] + '</span><div class="bar"><i data-w="' + (l[1] / 720 * 100).toFixed(1) + '" style="background:var(--accent)"></i></div><span>' + l[1] + '</span></div>';
+            }).join("");
+            var topics = [["Advanced", "var(--hard)", [["Dynamic Programming", 131], ["Backtracking", 32], ["Union-Find", 22]]],
+            ["Intermediate", "var(--med)", [["Hash Table", 152], ["Math", 111], ["Depth-First Search", 87]]],
+            ["Fundamental", "var(--easy)", [["Array", 435], ["String", 163], ["Sorting", 102]]]];
+            $("topics").innerHTML = '<div class="mini">Top topics</div>' + topics.map(function (t) {
+                return '<span class="lvl" style="background:' + t[1] + '">' + t[0] + '</span>' + t[2].map(function (r) { return '<div class="tag-row"><span>' + r[0] + '</span><b>×' + r[1] + '</b></div>'; }).join("");
+            }).join('<div style="height:12px"></div>');
 
-            document.getElementById("year").textContent = new Date().getFullYear();
+            function animateLC() {
+                var ring = $("ring").querySelector(".fg"), c = 2 * Math.PI * 52, pct = +$("ring").dataset.pct;
+                ring.style.strokeDasharray = (c * pct / 100) + " " + c;
+                document.querySelectorAll("#leetcode .bar i").forEach(function (b) { b.style.width = b.dataset.w + "%"; });
+            }
+            var lc = $("leetcode");
+            if ("IntersectionObserver" in window && !reduce) {
+                new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { animateLC(); o.disconnect(); } }, { threshold: .2 }).observe(lc);
+            } else animateLC();
+
+            /* GitHub: pinned repos are built in, the live API only adds descriptions and stars */
+            var GH = "Abhishek213152";
+            var pinned = [["AI-Placement-Prep", "JavaScript"], ["Youtube-Sentiment-Analysis-Website-", "Python"], ["Youtube-Sentiment-Analysis-App-", "Python"],
+            ["FreshFold-Website", "JavaScript"], ["FreshFold-App", "JavaScript"], ["Background-Image-Remover", "CSS"]];
+            var lc = { "JavaScript": "#F1E05A", "Python": "#3572A5", "CSS": "#8B5CF6", "Java": "#B07219", "HTML": "#E34C26" };
+            $("repos").innerHTML = pinned.map(function (r) {
+                return '<a class="card repo" data-repo="' + esc(r[0]) + '" href="https://github.com/' + GH + '/' + esc(r[0]) + '" target="_blank" rel="noopener"><h3>' + esc(r[0]) +
+                    '</h3><p class="d">Public repository on GitHub.</p><div class="foot"><span><i class="dot" style="background:' + lc[r[1]] + '"></i>' + r[1] + '</span><span class="st"></span></div></a>';
+            }).join("");
+            var recent = [["AI-Email-Classifier", "JavaScript", "3 commits"], ["Portfolio", "HTML", "2 commits"], ["TODAY", "Java", "2 commits"]];
+            $("recent").innerHTML = recent.map(function (r) {
+                return '<a href="https://github.com/' + GH + '/' + r[0] + '" target="_blank" rel="noopener" style="text-decoration:none"><span style="font-size:.9rem;padding:6px 12px"><i class="dot" style="background:' + lc[r[1]] + '"></i>' + r[0] + ' · ' + r[2] + '</span></a>';
+            }).join("");
+            fetch("https://api.github.com/users/" + GH + "/repos?per_page=100").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (list) {
+                list.forEach(function (r) {
+                    var card = document.querySelector('[data-repo="' + r.name + '"]');
+                    if (!card) return;
+                    if (r.description) card.querySelector(".d").textContent = r.description;
+                    card.querySelector(".st").textContent = "★ " + r.stargazers_count + "  ⑂ " + r.forks_count;
+                });
+            }).catch(function () { });
+
+            /* Active nav link */
+            var links = document.querySelectorAll("#menu a");
+            if ("IntersectionObserver" in window) {
+                var io = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle("act", a.getAttribute("href") === "#" + e.target.id); }); });
+                }, { rootMargin: "-45% 0px -50% 0px" });
+                document.querySelectorAll("main section").forEach(function (s) { io.observe(s); });
+            }
+            $("year").textContent = new Date().getFullYear();
         })();
     </script>
 </body>

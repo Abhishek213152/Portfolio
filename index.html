@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Abhishek Jha – Java Backend Developer</title>
+    <meta name="description"
+        content="Portfolio of Abhishek Jha, Programmer Analyst at Cognizant building Java and Spring Boot REST APIs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #F2F5FA;
+            --panel: #FFFFFF;
+            --ink: #12203D;
+            --muted: #55627D;
+            --line: #D6DDEA;
+            --accent: #2F45D8;
+            --accent-ink: #FFFFFF;
+            --hi: #F5A300;
+            --code-bg: #12203D;
+            --code-ink: #DCE4FA;
+            --code-key: #8FA2FF;
+            --code-str: #FFC857;
+            --code-ok: #6EE7A8;
+            --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+            --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+            --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0D1324;
+                --panel: #141C33;
+                --ink: #E7ECF8;
+                --muted: #9AA6C3;
+                --line: #26314F;
+                --accent: #8FA2FF;
+                --accent-ink: #0D1324;
+                --code-bg: #080C18;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0D1324;
+            --panel: #141C33;
+            --ink: #E7ECF8;
+            --muted: #9AA6C3;
+            --line: #26314F;
+            --accent: #8FA2FF;
+            --accent-ink: #0D1324;
+            --code-bg: #080C18;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0
+        }
+
+        :root {
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font: 400 1.05rem/1.65 var(--body);
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: inherit
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--hi);
+            outline-offset: 3px;
+            border-radius: 4px
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        /* nav */
+        header.nav {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 10;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 62px;
+            gap: 16px
+        }
+
+        .logo {
+            font: 800 1.15rem var(--display);
+            text-decoration: none;
+            letter-spacing: -.02em
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 22px;
+            list-style: none;
+            padding: 0;
+            font-size: .95rem;
+            font-weight: 500
+        }
+
+        .nav ul a {
+            text-decoration: none;
+            color: var(--muted)
+        }
+
+        .nav ul a:hover {
+            color: var(--ink)
+        }
+
+        .toggle {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            color: var(--ink);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font: 500 .85rem var(--body);
+            cursor: pointer
+        }
+
+        .toggle:hover {
+            border-color: var(--accent)
+        }
+
+        @media(max-width:720px) {
+            .nav ul {
+                display: none
+            }
+        }
+
+        /* hero */
+        .hero {
+            padding: 72px 0 56px
+        }
+
+        .hero .wrap {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 48px;
+            align-items: center
+        }
+
+        h1 {
+            font: 800 clamp(2.6rem, 6vw, 4.4rem)/1 var(--display);
+            letter-spacing: -.035em
+        }
+
+        .role {
+            margin-top: 18px;
+            font: 500 1.25rem/1.4 var(--display);
+            color: var(--muted)
+        }
+
+        .lede {
+            margin-top: 18px;
+            max-width: 46ch;
+            color: var(--muted)
+        }
+
+        .cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1.5px solid var(--ink);
+            transition: transform .15s
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent)
+        }
+
+        .btn:hover {
+            transform: translateY(-2px)
+        }
+
+        .term {
+            background: var(--code-bg);
+            color: var(--code-ink);
+            border-radius: 14px;
+            font: 400 .86rem/1.7 var(--mono);
+            overflow: hidden;
+            box-shadow: 8px 8px 0 var(--accent)
+        }
+
+        .term-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 18px;
+            border-bottom: 1px solid #ffffff1f;
+            color: #9fb0dd
+        }
+
+        .term-bar b {
+            color: var(--code-ok);
+            font-weight: 500
+        }
+
+        .term pre {
+            padding: 16px 18px 20px;
+            overflow-x: auto;
+            min-height: 300px;
+            font: inherit
+        }
+
+        .term .l {
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity .3s, transform .3s;
+            display: block;
+            white-space: pre
+        }
+
+        .term .l.on,
+        .reduce .term .l {
+            opacity: 1;
+            transform: none
+        }
+
+        .k {
+            color: var(--code-key)
+        }
+
+        .s {
+            color: var(--code-str)
+        }
+
+        .n {
+            color: var(--code-ok)
+        }
+
+        @media(max-width:820px) {
+            .hero .wrap {
+                grid-template-columns: 1fr
+            }
+
+            .hero {
+                padding-top: 44px
+            }
+        }
+
+        /* sections */
+        section {
+            padding: 64px 0;
+            border-top: 1px solid var(--line)
+        }
+
+        h2 {
+            font: 700 clamp(1.7rem, 3.5vw, 2.3rem)/1.1 var(--display);
+            letter-spacing: -.025em;
+            margin-bottom: 28px
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 26px
+        }
+
+        .job-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 6px 20px;
+            margin-bottom: 14px
+        }
+
+        .job-head h3 {
+            font: 700 1.35rem var(--display)
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        .card ul {
+            padding-left: 20px;
+            display: grid;
+            gap: 10px;
+            max-width: 78ch
+        }
+
+        .card li::marker {
+            color: var(--accent)
+        }
+
+        /* skills */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .tab {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font: 500 .92rem var(--body);
+            cursor: pointer
+        }
+
+        .tab[aria-selected="true"] {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink)
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-height: 96px;
+            align-content: flex-start
+        }
+
+        .chip {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            padding: 7px 14px;
+            border-radius: 8px;
+            font: 500 .92rem var(--mono)
+        }
+
+        /* projects */
+        .grid2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px
+        }
+
+        .proj {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .proj h3 {
+            font: 700 1.3rem var(--display)
+        }
+
+        .proj ul {
+            flex: 1
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px
+        }
+
+        .tags span {
+            font: 500 .78rem var(--mono);
+            color: var(--accent);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 2px 8px
+        }
+
+        .proj .btn {
+            align-self: flex-start;
+            padding: 9px 18px;
+            font-size: .92rem
+        }
+
+        @media(max-width:760px) {
+            .grid2 {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* stats */
+        .stat {
+            font: 800 3rem/1 var(--display);
+            color: var(--accent);
+            letter-spacing: -.03em
+        }
+
+        .stat-card p {
+            margin-top: 8px;
+            color: var(--muted)
+        }
+
+        .links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px
+        }
+
+        /* education */
+        .edu {
+            list-style: none;
+            padding: 0;
+            border-left: 2px solid var(--line);
+            display: grid;
+            gap: 26px;
+            margin-left: 6px
+        }
+
+        .edu li {
+            padding-left: 24px;
+            position: relative
+        }
+
+        .edu li::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 9px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg)
+        }
+
+        .edu h3 {
+            font: 700 1.15rem var(--display)
+        }
+
+        .edu .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 16px
+        }
+
+        /* contact */
+        .contact {
+            text-align: left
+        }
+
+        .contact .big {
+            font: 800 clamp(1.6rem, 4.5vw, 3rem)/1.15 var(--display);
+            letter-spacing: -.03em;
+            word-break: break-word
+        }
+
+        .contact .big a {
+            text-decoration-color: var(--hi);
+            text-decoration-thickness: 4px;
+            text-underline-offset: 6px
+        }
+
+        footer {
+            padding: 28px 0 40px;
+            color: var(--muted);
+            font-size: .9rem;
+            border-top: 1px solid var(--line)
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            .btn {
+                transition: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav">
+        <div class="wrap">
+            <a class="logo" href="#top">Abhishek Jha</a>
+            <ul>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="toggle" id="theme" type="button" aria-label="Switch colour theme">Dark mode</button>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="hero">
+            <div class="wrap">
+                <div>
+                    <h1>Abhishek Jha</h1>
+                    <p class="role">Java backend developer who builds secure, tested REST APIs.</p>
+                    <p class="lede">I work at Cognizant in Bengaluru with Spring Boot, JPA and MySQL, and I build
+                        AI-powered web apps with React on the side.</p>
+                    <div class="cta">
+                        <a class="btn primary" href="#projects">See my projects</a>
+                        <a class="btn" href="mailto:jhaa213152@gmail.com">Email me</a>
+                    </div>
+                </div>
+                <div class="term" aria-label="Summary shown as an API response">
+                    <div class="term-bar"><span>GET /developers/abhishek-jha</span><b>200 OK</b></div>
+                    <pre id="json"></pre>
+                </div>
+            </div>
+        </div>
+
+        <section id="experience">
+            <div class="wrap">
+                <h2>Experience</h2>
+                <article class="card">
+                    <div class="job-head">
+                        <div>
+                            <h3>Programmer Analyst</h3>
+                            <div class="meta">Cognizant, Bengaluru, India</div>
+                        </div>
+                        <div class="meta">Nov 2025 – Present</div>
+                    </div>
+                    <ul>
+                        <li>Develop and maintain enterprise REST APIs with Java, Spring Boot and Spring MVC, covering
+                            business logic, request validation, exception handling and CRUD across several backend
+                            modules.</li>
+                        <li>Design persistence layers with Spring Data JPA, Hibernate and MySQL, including entity
+                            relationships, custom queries, pagination and transaction management.</li>
+                        <li>Secure endpoints with Spring Security and JWT authentication, using role-based authorization
+                            to control access to resources.</li>
+                        <li>Write unit and integration tests with JUnit and Mockito, validate APIs with Postman, and
+                            keep quality up through Git code reviews and Maven builds.</li>
+                        <li>Work with frontend, QA and DevOps teams in Agile sprints to ship features, fix defects and
+                            support deployments to development and testing environments.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="wrap">
+                <h2>Skills</h2>
+                <div class="tabs" role="tablist" id="tabs" aria-label="Skill groups"></div>
+                <div class="chips" id="chips" role="tabpanel" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="wrap">
+                <h2>Projects</h2>
+                <div class="grid2">
+                    <article class="card proj">
+                        <h3>AI Placement Practice Platform</h3>
+                        <ul>
+                            <li>Placement preparation platform built with React, Tailwind CSS and Firebase.</li>
+                            <li>Uses the Gemini API to score resumes for ATS and suggest improvements.</li>
+                            <li>Includes an online coding practice environment for solving challenges.</li>
+                            <li>Responsive interface designed for easy use on any screen.</li>
+                        </ul>
+                        <div class="tags"><span>React</span><span>Tailwind CSS</span><span>Firebase</span><span>Gemini
+                                API</span></div>
+                        <a class="btn" href="https://ai-interview-coding-practise.pages.dev/" target="_blank"
+                            rel="noopener">Open live site</a>
+                    </article>
+                    <article class="card proj">
+                        <h3>YouTube Sentiment Analysis</h3>
+                        <ul>
+                            <li>Full-stack app built with Flask, React.js and Docker.</li>
+                            <li>Fetches and preprocesses YouTube comments in real time through the YouTube Data API.
+                            </li>
+                            <li>Classifies comments with VADER sentiment analysis at 90% accuracy.</li>
+                            <li>REST APIs feed interactive dashboards that visualize sentiment.</li>
+                        </ul>
+                        <div class="tags"><span>Flask</span><span>React.js</span><span>Docker</span><span>VADER</span>
+                        </div>
+                        <a class="btn" href="https://sentiment-youtube-comment-abhishek.pages.dev/" target="_blank"
+                            rel="noopener">Open live site</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <div class="wrap">
+                <h2>Achievements and coding profiles</h2>
+                <div class="grid2">
+                    <div class="card stat-card">
+                        <div class="stat"><span id="count">800</span>+</div>
+                        <p>algorithmic problems solved on competitive programming platforms.</p>
+                        <div class="links">
+                            <a class="btn" href="https://leetcode.com/u/jhaa213152/" target="_blank"
+                                rel="noopener">LeetCode</a>
+                            <a class="btn" href="https://www.geeksforgeeks.org/profile/jhaa213152?tab=activity"
+                                target="_blank" rel="noopener">GeeksforGeeks</a>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat">Live</div>
+                        <p>Developed and deployed a production-grade business app using Cursor AI and Claude Opus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="wrap">
+                <h2>Education</h2>
+                <ul class="edu">
+                    <li>
+                        <h3>Future Institute of Engineering and Management</h3>
+                        <div class="meta"><span>Bachelor of Technology, CGPA 8.5</span><span>Kolkata · Aug 2025</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>Shree Jain Vidyalaya</h3>
+                        <div class="meta"><span>Higher Secondary</span><span>Kolkata · Apr 2021</span></div>
+                    </li>
+                    <li>
+                        <h3>Hind Motor High School</h3>
+                        <div class="meta"><span>Secondary</span><span>Kolkata · Mar 2019</span></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="wrap">
+                <h2>Get in touch</h2>
+                <p class="big"><a href="mailto:jhaa213152@gmail.com">jhaa213152@gmail.com</a></p>
+                <div class="links">
+                    <a class="btn" href="tel:+916289716964">+91 62897 16964</a>
+                    <a class="btn" href="https://www.linkedin.com/in/abhishek-jha-0839a621b/" target="_blank"
+                        rel="noopener">LinkedIn</a>
+                    <a class="btn" href="https://github.com/Abhishek213152" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">© <span id="year"></span> Abhishek Jha</div>
+    </footer>
+
+    <script>
+        (function () {
+            var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (reduce) document.documentElement.classList.add("reduce");
+
+            /* Theme toggle */
+            var root = document.documentElement, btn = document.getElementById("theme");
+            function isDark() { return root.dataset.theme === "dark"; }
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) root.dataset.theme = "dark";
+            try { var saved = localStorage.getItem("theme"); if (saved) root.dataset.theme = saved; } catch (e) { }
+            function label() { btn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+            label();
+            btn.addEventListener("click", function () {
+                root.dataset.theme = isDark() ? "light" : "dark";
+                try { localStorage.setItem("theme", root.dataset.theme); } catch (e) { }
+                label();
+            });
+
+            /* Hero: API-style summary revealed line by line */
+            var lines = [
+                '{',
+                '  <span class="k">"name"</span>: <span class="s">"Abhishek Jha"</span>,',
+                '  <span class="k">"role"</span>: <span class="s">"Programmer Analyst"</span>,',
+                '  <span class="k">"company"</span>: <span class="s">"Cognizant"</span>,',
+                '  <span class="k">"location"</span>: <span class="s">"Bengaluru, India"</span>,',
+                '  <span class="k">"stack"</span>: [<span class="s">"Java"</span>, <span class="s">"Spring Boot"</span>,',
+                '            <span class="s">"JPA"</span>, <span class="s">"MySQL"</span>, <span class="s">"React"</span>],',
+                '  <span class="k">"security"</span>: <span class="s">"JWT + RBAC"</span>,',
+                '  <span class="k">"testing"</span>: [<span class="s">"JUnit"</span>, <span class="s">"Mockito"</span>],',
+                '  <span class="k">"problemsSolved"</span>: <span class="n">800</span>,',
+                '  <span class="k">"openToWork"</span>: <span class="n">true</span>',
+                '}'
+            ];
+            var pre = document.getElementById("json");
+            pre.innerHTML = lines.map(function (l) { return '<span class="l">' + l + '</span>'; }).join("");
+            var els = pre.querySelectorAll(".l");
+            els.forEach(function (el, i) {
+                if (reduce) return;
+                setTimeout(function () { el.classList.add("on"); }, 350 + i * 130);
+            });
+
+            /* Skills tabs */
+            var skills = {
+                "Languages": ["Java", "JavaScript (ES6+)", "Python", "SQL"],
+                "Backend": ["Spring Boot", "Spring MVC", "REST APIs", "Microservices", "Domain-Driven Design", "Hibernate"],
+                "Frontend": ["React.js", "Tailwind CSS", "Responsive Web Design", "Component Lifecycle", "Web APIs"],
+                "Cloud and data": ["AWS Lambda", "S3", "DynamoDB", "Step Functions", "Elasticsearch", "Docker", "CI/CD", "MySQL", "Firebase"],
+                "GenAI and ML": ["LLMs", "RAG", "LangChain", "Embeddings", "Vector Databases", "AI Agents"],
+                "Testing and tools": ["Jest", "Mocha", "Jasmine", "JUnit", "Mockito", "Git", "Postman", "Maven", "JIRA", "Agile/Scrum", "Cursor AI"],
+                "Computer science": ["Data Structures and Algorithms", "OOP Design Patterns", "DBMS", "Operating Systems", "HLD", "LLD"]
+            };
+            var tabs = document.getElementById("tabs"), chips = document.getElementById("chips");
+            function show(name) {
+                Array.prototype.forEach.call(tabs.children, function (t) { t.setAttribute("aria-selected", String(t.textContent === name)); });
+                chips.innerHTML = skills[name].map(function (s) { return '<span class="chip">' + s + '</span>'; }).join("");
+            }
+            Object.keys(skills).forEach(function (name, i) {
+                var b = document.createElement("button");
+                b.type = "button"; b.className = "tab"; b.setAttribute("role", "tab"); b.textContent = name;
+                b.addEventListener("click", function () { show(name); });
+                tabs.appendChild(b);
+                if (i === 0) show(name);
+            });
+
+            /* Count-up for problems solved */
+            var counter = document.getElementById("count");
+            if (!reduce && "IntersectionObserver" in window) {
+                var done = false;
+                new IntersectionObserver(function (entries, obs) {
+                    if (done || !entries[0].isIntersecting) return;
+                    done = true; obs.disconnect();
+                    var start = performance.now();
+                    (function tick(now) {
+                        var p = Math.min((now - start) / 1200, 1);
+                        counter.textContent = Math.round(800 * (1 - Math.pow(1 - p, 3)));
+                        if (p < 1) requestAnimationFrame(tick);
+                    })(start);
+                }).observe(counter);
+            }
+
+            document.getElementById("year").textContent = new Date().getFullYear();
+        })();
+    </script>
+</body>
+
+</html>
